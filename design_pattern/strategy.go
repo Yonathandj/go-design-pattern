@@ -11,7 +11,7 @@ import "fmt"
 */
 
 // Strategy interface
-type DBConnection interface {
+type IDBConnection interface {
 	Connect()
 }
 
@@ -33,6 +33,42 @@ func (mc *MongoDBConnection) Connect() {
 
 // Context
 type ConnectSpecificDB struct {
-	DB DBConnection
+	DB IDBConnection
 }
 
+//======================================//
+
+// Strategy interface
+type IValidation interface {
+	Validate() string
+}
+
+// Strategy konkrit 1
+type CreateStudent struct {
+	 Name string `json:"name"`
+	 Age int `json:"age"`
+}
+func (cr *CreateStudent) Validate() string {
+	if cr.Name == "" || cr.Age == 0 {
+		return "Invalid user input"
+	}
+	return "Successfully validate user input"
+}
+
+// Strategy konkrit 2
+type UpdateStudent struct {
+	Id int `json:"id"`
+	Name string `json:"name"`
+	Age int `json:"age"`
+}
+func (uv *UpdateStudent) Validate() string  {
+	if uv.Name == "" || uv.Age == 0 || uv.Id == 0 {
+		return "Invalid user input"
+	}
+	return "Successfully validate user input"
+}
+
+// Context
+type ValidateSpecificOperation struct {
+	ValidateData IValidation
+}
