@@ -17,11 +17,11 @@ func main() {
 
 	//=========================================//
 
-	newStudent := &design_pattern.CreateStudent{Name: "John Larren", Age: 12}
-	newStudentValidation := design_pattern.ValidateSpecificOperation{ValidateData: newStudent}
-	fmt.Println(newStudentValidation.ValidateData.Validate())
+	newStudent := &design_pattern.Student{Id: 1, Name: "Kayla Larren", Age: 20}
+	newStudentValidation := design_pattern.ValidateSpecificOperation{}
+	fmt.Println(newStudentValidation.SetAndValidateData(newStudent))
 
-	updateStudent := &design_pattern.UpdateStudent{Id: 2, Name: "John Larren", Age: 20}
-	updateStudentValidation := design_pattern.ValidateSpecificOperation{ValidateData: updateStudent}
-	fmt.Println(updateStudentValidation.ValidateData.Validate())
+	newEmployee := &design_pattern.Employee{Id: 1, Name: "John Larren", Age: 20}
+	newEmployeeValidation := design_pattern.ValidateSpecificOperation{}
+	fmt.Println(newEmployeeValidation.SetAndValidateData(newEmployee))
 }

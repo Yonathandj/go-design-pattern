@@ -44,31 +44,37 @@ type IValidation interface {
 }
 
 // Strategy konkrit 1
-type CreateStudent struct {
+type Student struct {
+	Id int `json:"id"`
 	 Name string `json:"name"`
 	 Age int `json:"age"`
 }
-func (cr *CreateStudent) Validate() string {
-	if cr.Name == "" || cr.Age == 0 {
+func (s *Student) Validate() string {
+	if s.Name == "" || s.Age == 0 {
 		return "Invalid user input"
 	}
-	return "Successfully validate user input"
+	return "Successfully validate user input student"
 }
 
 // Strategy konkrit 2
-type UpdateStudent struct {
+type Employee struct {
 	Id int `json:"id"`
 	Name string `json:"name"`
 	Age int `json:"age"`
 }
-func (uv *UpdateStudent) Validate() string  {
-	if uv.Name == "" || uv.Age == 0 || uv.Id == 0 {
+func (e *Employee) Validate() string  {
+	if e.Name == "" || e.Age == 0 {
 		return "Invalid user input"
 	}
-	return "Successfully validate user input"
+	return "Successfully validate user input employee"
 }
 
 // Context
 type ValidateSpecificOperation struct {
-	ValidateData IValidation
+	Validation IValidation
+}
+func (vso *ValidateSpecificOperation) SetAndValidateData(validation IValidation) string {
+	vso.Validation = validation
+	//
+	return vso.Validation.Validate()
 }
