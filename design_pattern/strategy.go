@@ -77,4 +77,5 @@ func (vso *ValidateSpecificOperation) SetAndValidateData(validation IValidation)
 	vso.Validation = validation
 	//
 	return vso.Validation.Validate()
+	
 }
