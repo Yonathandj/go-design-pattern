@@ -59,5 +59,23 @@ func main() {
 	fmt.Print("Mr.Beast Channel has subscribers", mrBeastChannel.Subscribers)
 	for _, v := range mrBeastChannel.Subscribers {
 		fmt.Print(v)
-	}
+	}; fmt.Println()
+
+	//=================================//
+	//=================================//
+
+	// Singleton Design Pattern
+
+
+	// Instansiasi object masih print "Call once"
+	database := design_pattern.DBConnection();
+	fmt.Println("Database instance", database)
+	
+	// Instansiasi object sudah tidak print "Call once" karena tidak membuat instance baru
+	database2 := design_pattern.DBConnection();
+	fmt.Println("Database instance 2", database2)
+
+	// Instansiasi object sudah tidak print "Call once" karena tidak membuat instance baru
+	database3 := design_pattern.DBConnection();
+	fmt.Println("Database instance 3", database3)
 }
